@@ -1,0 +1,11 @@
+GET http://localhost:8000/data/users
+
+### RETRIEVE ALL USER AND HASHED PASSWORDS
+
+GET http://localhost:8000/data/classes
+
+### RETRIEVE ALL CLASSES
+
+GET http://localhost:8000/classes
+
+### RETRIEVE classes.ejs PAGE

@@ -1,0 +1,17 @@
+[{"classid": 1, "classname": "204 Math Class", "teacherids": 2, "studentids": [1,3],"assignments":
+    [{
+        "id": 1,
+        "name": "Revision Exercise 1",
+        "description": "This is the revision exercise given out to the class on 2th June 2022",
+        "due_date" : 1654358399,
+        "submitted_ids": [3]
+    }]},
+{"classid": 2, "classname": "402 Math Class", "teacherids": 2, "studentids": [1,4],"assignments":
+    [{
+        "id": 1,
+        "name": "Integration Practice",
+        "description": "Integration Practice given out on 30th May",
+        "due_date" : 1654444799,
+        "submitted_ids": [1]
+    }]}
+]

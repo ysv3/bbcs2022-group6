@@ -1,0 +1,34 @@
+
+///ERROR CODES///
+
+code #0000A5 : token assignment failed
+code #0000A6 : login: bcrypt comparison failed
+
+
+
+
+
+///REDIRECT CODES///
+
+code #01 : not logged in
+code #02 : invalid token
+code #03 : successful registration
+code #04 : successful signout
+
+
+
+
+
+///REFERENCE///
+input data:   username=admin&password=bu1ld1ngbl0cS
+
+
+
+
+
+///DEFAULT UESRS///
+admin:bu1ld1ngbl0cS:student
+teacher:bu1ld1ngbl0cS:teacher
+student01:student:student
+student02:student:student
+teacher2:johncena:teacher

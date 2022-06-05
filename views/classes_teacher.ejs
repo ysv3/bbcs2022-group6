@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+        <title>Classes</title>
+        <style>
+            table, th, td {
+            border: 1px solid black;
+            }
+        </style>
+    </head>
+
+    <body>
+        <button onclick="document.location='home'">Return Home</button>
+        <button onclick="document.location='assign'">Assign Homework</button>
+        <button onclick="document.location='makeclass'">Create Class (Placeholder)</button>
+        <p id="classes"></p>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+        <script>
+            var classdata = <%- JSON.stringify(classdata) %>
+
+            let class_info = '<table style="width:90%"><thead><tr><th colspan="6">Homework</th></tr></thead><tbody><tr>'
+            class_info += "<tr><td>Class</td><td>Assignments</td><td>Description</td><td>Submission Status</td><td>Due Date</td><td>Due in/Overdue by</td></tr>"
+            for (let i = 0; i < classdata.length; i++) {
+                class_info += '<tr><td rowspan="'+ classdata[i].assignments.length + '">' + classdata[i].classname + "</td>"
+                for (let u = 0; u < classdata[i].assignments.length; u++) {
+                    class_info += "<td>" + classdata[i].assignments[u].name + "</td>"
+                    class_info += "<td>" + classdata[i].assignments[u].description + "</td>"
+                    class_info += "<td>" + classdata[i].assignments[u].submission_count + "</td>"
+                    const duedate = classdata[i].assignments[u].due_date
+                    const duedateObject = new Date(duedate*1000)
+                    class_info += "<td>" + duedateObject.toLocaleString() +"</td>"
+                    const now_time = Date.now()
+                    const nowtime = new Date(now_time)
+                    const time_diff = (now_time - duedate*1000)
+                    const days = (time_diff/1000/60/60/24)
+                    const hours = (time_diff/1000/60/60)
+                    if (time_diff > 0) {
+                        if (days < 1) {
+                            class_info += ("<td>Overdue by " + Math.round(hours) + " hours!</td>")
+                        } else {
+                            class_info += ("<td>Overdue by " + Math.round(days) + " days and " + Math.round(hours) + " hours!</td>")
+                        }
+                    } else {
+                        if (days < 1) {
+                            class_info += ("<td>Due in " + Math.round(-hours) + " hours.</td>")
+                        } else {
+                            class_info += ("<td>Due in " + Math.round(-days) + " days and " + Math.round(-hours) + " hours.</td>")
+                        }
+                    }
+                    class_info += "</tr>"
+                }
+            }
+            class_info += '</tr></tbody></table>'
+            document.getElementById("classes").innerHTML = class_info
+            //document.write(class_info)
+        </script>
+    </body>
+</html>

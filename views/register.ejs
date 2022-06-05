@@ -1,0 +1,26 @@
+<!DOCTYPE html> 
+<html>
+
+    <head>
+        <title>Register</title>
+    </head>
+
+    <body>
+        <h2>Register</h2>
+        <form action="/register" method = "POST" >
+            <input type="text" placeholder="username" name="username">
+            <br>
+            <input type="text" placeholder="password" name="password">
+            <br>
+            <label>Are you a teacher or a student?</label>
+            <select name="status">
+                <option value="teacher">Teacher</option>
+                <option value="student">Student</option>
+            </select>
+            <br>
+            <input type="submit" value="Submit"></input>
+        </form>
+        <a href="login">Already have an account? Login here</a>
+    </body>
+
+</html>
