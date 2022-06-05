@@ -17,7 +17,7 @@ app.use(session({
     secret: "buildingblock",
     resave : true,
     saveUninitialized: true,
-    cookie : {maxAge : 1000*60*10},
+    cookie : {maxAge : 1000*60*60},
 }))
 app.use(express.json())
 
@@ -34,6 +34,8 @@ const tokens = []
 function jsonifyformdata(formdata) {                // formdata to json format
     formdata = formdata.replaceAll("=", '": "')
     formdata = formdata.replaceAll("&", '","')
+    formdata = formdata.replaceAll("+", " ")
+    formdata = formdata.replaceAll("%2F", "/")
     formdata = '{"' + formdata + '"}'
     return formdata
 }
@@ -153,14 +155,13 @@ app.get('/classes', function(req, res) {
                 })
             }
         }
-        console.log(classdata)
         res.render("classes_teacher.ejs", {
                 classdata : classdata,
         })
     }
 }})
 
-app.get('assign', function(req, res) {
+app.get('/assign', function(req, res) {
     if (!req.session.tokenid) {
         req.session.redirectCode = '#01'
         res.redirect('./login')
@@ -174,10 +175,23 @@ app.get('assign', function(req, res) {
         token_index = tokens.indexOf(user_token)
         tokens.splice(token_index, 1)
         res.redirect('./login')
-    } else {
-        res.render("assign.ejs")
+    } else if ((users.find(user => user.username === req.session.username)).accounttype === "teacher") {
+        const user = users.find(user => user.username === req.session.username)
+        
+        const user_classnames = []
+
+        for (let i = 0; i < classes.length; i++) {
+            if (classes[i].teacherids.includes(user.userid)) {
+                user_classnames.push(classes[i].classname)
+            }
+        }
+
+        res.render("assign.ejs", {
+            classnames : user_classnames
+        })
     }
 })
+
 
 app.post('/signout', function(req, res) {
     const user_token = {
@@ -189,6 +203,10 @@ app.post('/signout', function(req, res) {
     flushsession(req.session, true)
     req.session.redirectCode = "#04"
     res.redirect('/login')
+})
+
+app.get('/success', function (req, res) {
+    res.render("success.ejs")
 })
 
 app.get('/register', function(req, res) {
@@ -228,6 +246,37 @@ app.get('/login', function(req, res) {
     }
 })
 
+app.post('/assign', function(req, res) {
+    req.on("data", function(data) {
+        try {
+            data = data.toString()
+            data = jsonifyformdata(data)
+            data = JSON.parse(data)
+            const assignedclass = classes.find(assignedclass => assignedclass.classname === data.class)
+            const duedatesplit = data.due_date.split("/")
+            var d = duedatesplit[0]
+            duedatesplit[0] = duedatesplit[1]
+            duedatesplit[1] = d
+            const duedate = Math.floor(new Date(duedatesplit).getTime() / 1000)
+            const homework = {
+                "id" : (assignedclass.assignments.length)+1,
+                "name" : data.assignment_name,
+                "description" : data.description,
+                "due_date" : duedate,
+                "submitted_ids" : []
+            }
+            currentclass = classes[(assignedclass.classid-1)]
+            currentclass.assignments.push(homework)
+            classes[(assignedclass.classid-1)] = currentclass
+            fs.writeFileSync('./data/classes.json', JSON.stringify(classes))
+            res.redirect('/success')
+        } catch {
+            console.log("homework assignment failure")
+            res.status(500)
+        }
+    })
+})
+
 app.post('/register', function(req, res) {
     req.on("data", async function (data) {
         data = data.toString()
@@ -246,6 +295,7 @@ app.post('/register', function(req, res) {
             req.session.redirectCode = "#03"
             res.status(201).redirect('./login')
         } catch {
+            console.log("registration failure")
             res.status(500).send()
         }
     })
@@ -271,13 +321,15 @@ app.post('/login', function(req, res) {
                     req.session.accounttype = user.accounttype
                     res.redirect("/home")
                 } catch {
+                    console.log("code #0000A5")
                     res.status(500).send("server-side issue: code #0000A5")
                 }
             } else {
                 res.send("incorrect credentials")
             }
         } catch {
-                res.status(500).send("server-side issue: code #000A6")
+            console.log("code #000A6")
+            res.status(500).send("server-side issue: code #000A6")
             }
     })
 })

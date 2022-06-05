@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" 
+                href="https://fonts.googleapis.com/css?family=Montserrat">
+        <title>Assign Homework</title>
+
+    <style>
+        #header{
+            font-family : Montserrat;
+            font-size : 30px;
+        }
+        #inputbox{
+            width:20%;
+            height:35px;
+            padding: 0px 4px;
+            box-sizing: border-box;
+            width:20%;
+            font-family: Montserrat;
+            font-size: 17px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+        }
+        #textarea{
+            width:60%;
+            height:150px;
+            padding: 4px 4px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            font-family: Montserrat;
+            font-size: 17px;
+            resize: none;
+        }
+        input.ex1:hover, a.ex1:active {
+            color: blue;
+            font-size: 150%;
+            background:#ccc}
+
+    </style>
+
+    </head>
+
+    <body>
+        <h2 id = "header">Assign Homework:</h2>
+        <form action="/assign" method = "POST">
+            <p id="dropdown"></p>
+            <input id="inputbox" type="text" placeholder="Assignment Name" name="assignment_name" required>
+            <br>
+            <br>
+            <textarea id="textarea" placeholder="Assignment Description" name="description" required></textarea>
+            <br>
+            <input id="inputbox" type="text" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="Due Date in DD/MM/YYYY format" name="due_date" required>
+            <br>
+            <input class='ex1' id="inputbox" type="submit" value="Submit">
+
+        </form>
+
+        <script>
+            var classnames = <%- JSON.stringify(classnames) %>
+            
+            var dropdownhtml = '<select id="inputbox"name="class">'
+
+            for (i = 0; i < classnames.length;i++) {
+                dropdownhtml += '<option value = "' + classnames[i] + '">' + classnames[i] + '</option>'
+            }
+
+            dropdownhtml += '</select>'
+            document.getElementById("dropdown").innerHTML = dropdownhtml
+
+        </script>
+    </body>
+
+
+</html>

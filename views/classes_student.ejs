@@ -13,9 +13,6 @@
 
     <body>
         <p id="classes"></p>
-        <p>--classes above--</p>
-
-
 
 
 
@@ -63,7 +60,7 @@
                             class_info += ("<td>Overdue by " + Math.round(days) + " days and " + Math.round(hours) + " hours!</td>")
                         }
                     } else {
-                        if (days < 1) {
+                        if (days > -1) {
                             class_info += ("<td>Due in " + Math.round(-hours) + " hours.</td>")
                         } else {
                             class_info += ("<td>Due in " + Math.round(-days) + " days and " + Math.round(-hours) + " hours.</td>")
