@@ -11,4 +11,5 @@ Requires the following dependencies:
   express-session, 
   path
  
+ Made in Node.js
  Run in Console with the command "node app.js" in the main directory (...\bbcs2022-group6)
