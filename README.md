@@ -1,6 +1,8 @@
 # bbcs2022-group6
 A homework tracking "website", Homeworked.
 
+This was made for the BuildingBloCS 2022 Hackathon, I honestly don't even know what I am doing.
+
 Requires the following dependencies:
   "bcrypt": "^5.0.1",
   "cookie-parser": "^1.4.6",
