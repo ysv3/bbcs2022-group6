@@ -1,26 +1,85 @@
 <!DOCTYPE html> 
 <html>
+    <body style="background-image:linear-gradient(to right,rgb(141, 238, 141),#42c5f5);"></body>
+        <link rel="stylesheet" 
+                href="https://fonts.googleapis.com/css?family=Montserrat">
+    <style>
+        .input{
+            background-color: rgba(255, 255, 255, 0.8);
+            height:35px;
+            padding: 0px 4px;
+            box-sizing: border-box;
+            font-family: Montserrat;
+            font-size: 17px;
+            border: 1px solid #ccc;
+        }
+        .dropdown{
+            background-color: rgba(255, 255, 255, 0.8);
+            height:25px;
+            padding: 0px 4px;
+            box-sizing: border-box;
+            font-family: Montserrat;
+            font-size: 15px;
+            border: 1px solid #ccc;
+        }
+        h1{
+            font-size:80px;
+            text-align: center;
+            font-family: Montserrat;
+        }
+        #wrapper{
+            text-align: center;
+            margin: 200px;
+        }
+        h2{
+            font-size:60px;
+            font-family:Montserrat, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+        }
+        h3{
+            font-size:20px;
+            font-family:Montserrat, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+        }
+        .buttons{
+            padding:10px;
+            height:30px;
+            width:100px;
+            background-color: rgba(255, 255, 255, 0.8);
+            margin:10px;
+            text-align:center;
+            border-radius:20px;
+            line-height: 0px;
+            cursor:pointer;
+            font-family: Montserrat;
+        }
+        .text{
+            font-family: Montserrat;
+            font-size: 15px
+        }
+        
+    </style>
 
     <head>
         <title>Register</title>
     </head>
-
+    <div id="wrapper">
     <body>
         <h2>Register</h2>
         <form action="/register" method = "POST" >
-            <input type="text" placeholder="username" name="username">
+            <input class="input" type="text" placeholder="username" name="username">
             <br>
-            <input type="text" placeholder="password" name="password">
+            <input class="input" type="text" placeholder="password" name="password">
             <br>
-            <label>Are you a teacher or a student?</label>
-            <select name="status">
-                <option value="teacher">Teacher</option>
-                <option value="student">Student</option>
+            <br>
+            <label class="text">Are you a teacher or a student?</label>
+            <select class="dropdown" name="status">
+                <option class="dropdown" value="teacher">Teacher</option>
+                <option class="dropdown" value="student">Student</option>
             </select>
             <br>
-            <input type="submit" value="Submit"></input>
+            <input class="buttons" type="submit" value="Submit">
         </form>
-        <a href="login">Already have an account? Login here</a>
+        <a class="text" href="login">Already have an account? Login here</a>
     </body>
+    </div>
 
 </html>

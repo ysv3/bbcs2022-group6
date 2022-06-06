@@ -210,8 +210,8 @@ app.get('/success', function (req, res) {
 })
 
 app.get('/register', function(req, res) {
-    res.render("register.ejs")
     req.session.redirectCode = undefined
+    res.render("register.ejs")
 })
 
 app.get('/login', function(req, res) {

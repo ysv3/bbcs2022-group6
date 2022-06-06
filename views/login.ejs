@@ -1,21 +1,70 @@
 <!DOCTYPE html> 
 <html>
+    <body style="background-image:linear-gradient(to right,rgb(141, 238, 141),#42c5f5);"></body>
+        <link rel="stylesheet" 
+                href="https://fonts.googleapis.com/css?family=Montserrat">
+    <style>
+        .input{
+            background-color: rgba(255, 255, 255, 0.8);
+            height:35px;
+            padding: 0px 4px;
+            box-sizing: border-box;
+            font-family: Montserrat;
+            font-size: 17px;
+            border: 1px solid #ccc;
+        }
+        h1{
+            font-size:80px;
+            text-align: center;
+            font-family: Montserrat;
+        }
+        #wrapper{
+            text-align: center;
+            margin: 200px;
+        }
+        h2{
+            font-size:60px;
+            font-family:Montserrat, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+        }
+        h3{
+            font-size:20px;
+            font-family:Montserrat, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+        }
+        .buttons{
+            padding:10px;
+            height:30px;
+            width:100px;
+            background-color: rgba(255, 255, 255, 0.8);
+            margin:10px;
+            text-align:center;
+            border-radius:20px;
+            line-height: 0px;
+            cursor:pointer;
+            font-family: Montserrat;
+        }
+        .text{
+            font-family: Montserrat;
+            font-size: 15px
+        }
+    </style>
 
     <head>
         <title>Login</title>
     </head>
 
+    <div id="wrapper">
     <body>
         <h2>Login</h2>
         <h3><%=error%></h3>
         <form action="/login" method = "POST" >
-            <input type="text" placeholder="username" name="username">
+            <input class="input" type="text" placeholder="username" name="username">
             <br>
-            <input type="text" placeholder="password" name="password">
+            <input class="input" type="text" placeholder="password" name="password">
             <br>
-            <input type="submit" value="Submit"></input>
+            <input type="submit" value="Submit"  class="buttons"></input>
         </form>
-        <a href="register">Don't have an account? Register here</a>
+        <a class="text" href="register">Don't have an account? Register here</a>
     </body>
+    </div>
 
 </html>

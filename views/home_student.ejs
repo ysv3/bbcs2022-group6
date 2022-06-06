@@ -1,16 +1,43 @@
 <!DOCTYPE html>
 <html>
+    <body style="background-image:linear-gradient(to right,rgb(141, 238, 141),#42c5f5);"></body>
+    <link rel="stylesheet" 
+                href="https://fonts.googleapis.com/css?family=Montserrat">
+    <style>
+        h1{
+            font-size:80px;
+            text-align: center;
+            font-family: Montserrat;
+        }
+        #wrapper{
+            text-align: center;
+        }
+        .buttons{
+            height:70px;
+            width:120px;
+            background-color: rgba(255, 255, 255, 0.8);
+            background-color:white;
+            margin:15px;
+            border-radius:20px;
+            padding:10px;
+            cursor:pointer;
+            font-family: Montserrat;
+            font-size: 20px;
+        }
+    </style>
 
     <head>
         <title>Homework'ed Home</title>
     </head>
 
     <body>
-        <h1>Welcome student, <%=name%></h1>
-            <button onclick="document.location='classes'">Classes</button>
+        <h1>Welcome, student <%=name%></h1>
+        <div id="wrapper">
+            <button onclick="document.location='classes'" class="buttons">Classes</button>
             <form action = "/signout" method = "POST">
-                <input type="submit" value="Sign Out"></input>
+                <input type="submit" value="Sign Out" class="buttons">
             </form>
+        </div>
     </body>
 
 </html>

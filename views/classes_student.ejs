@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 
 <html>
-    
+    <body style="background-image:linear-gradient(to right,rgb(141, 238, 141),#42c5f5);"></body>
+
     <head>
         <title>Classes</title>
+        <link rel="stylesheet" 
+                href="https://fonts.googleapis.com/css?family=Montserrat">
         <style>
             table, th, td {
-            border: 1px solid black;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid #ccc;
+            text-align:left;
+            font-size:20px;
+            border-collapse: collapse;
+            font-family: Montserrat;
+            }
+            #wrapper{
+                text-align:center;
+                width:90%;
             }
         </style>
     </head>
@@ -33,7 +45,7 @@
 
         <script>
             var classdata = <%- JSON.stringify(classdata) %>
-            let class_info = '<table style="width:90%"><thead><tr><th colspan="6">Homework</th></tr></thead><tbody><tr>'
+            let class_info = '<table id="wrapper"><thead><tr><th colspan="6">Homework</th></tr></thead><tbody><tr>'
             class_info += "<tr><td>Class</td><td>Assignments</td><td>Description</td><td>Submission Status</td><td>Due Date</td><td>Due in/Overdue by</td></tr>"
             for (let i = 0; i < classdata.length; i++) {
                 class_info += '<tr><td rowspan="'+ classdata[i].assignments.length + '">' + classdata[i].classname + "</td>"
